@@ -7,6 +7,10 @@ resource "aws_securityhub_standards_subscription" "cis" {
   standards_arn = "arn:aws:securityhub:${var.aws_region}::standards/cis-aws-foundations-benchmark/v/1.4.0"
 
   depends_on = [aws_securityhub_account.main]
+
+  timeouts {
+    create = "10m"  # ← Agregar esto
+  }
 }
 
 # AWS Foundational Security Best Practices
@@ -14,8 +18,11 @@ resource "aws_securityhub_standards_subscription" "foundational" {
   standards_arn = "arn:aws:securityhub:${var.aws_region}::standards/aws-foundational-security-best-practices/v/1.0.0"
 
   depends_on = [aws_securityhub_account.main]
-}
 
+  timeouts {
+    create = "10m" 
+    }
+}
 # EventBridge Rule: alertar cuando hay hallazgos CRITICAL o HIGH
 resource "aws_cloudwatch_event_rule" "security_hub_findings" {
   name        = "${var.project_name}-security-findings"

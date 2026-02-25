@@ -19,7 +19,7 @@ variable "project_name" {
 variable "alert_email" {
   description = "Email for security alerts"
   type        = string
-  default     = "example@mail.com" # Agregar tu email
+  default     = "santi.albisetti@gmail.com"   #"example@mail.com" # Agregar tu email
 }
 
 variable "enable_auto_remediation" {
